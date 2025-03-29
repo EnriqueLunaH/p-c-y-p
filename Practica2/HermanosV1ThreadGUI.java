@@ -12,7 +12,7 @@ class Jardin {
 
     public synchronized void sembrar(String nombre) {
         for (int i = 1; i <= 10; i++) {
-            textArea.append(nombre + " está sembrando el árbol " + i + "\n");
+            textArea.append(nombre + " está sembrando el arbol " + i + "\n");
 
             try {
                 Thread.sleep(500);
@@ -20,7 +20,7 @@ class Jardin {
                 e.printStackTrace();
             }
 
-            textArea.append(nombre + " ha terminado de sembrar el árbol " + i + "\n");
+            textArea.append(nombre + " ha terminado de sembrar el arbol " + i + "\n");
         }
     }
 }
@@ -41,7 +41,7 @@ class Hermano extends Thread {
 
 public class HermanosV1ThreadGUI {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Hermanos Sembrando Árboles");
+        JFrame frame = new JFrame("Hermanos Sembrando Arboles");
         JTextArea textArea = new JTextArea(20, 40);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -68,6 +68,6 @@ public class HermanosV1ThreadGUI {
             e.printStackTrace();
         }
 
-        textArea.append("Ambos hermanos han terminado de sembrar los árboles\n");
+        textArea.append("Ambos hermanos han terminado de sembrar los arboles\n");
     }
 }

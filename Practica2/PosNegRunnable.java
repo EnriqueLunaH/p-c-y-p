@@ -56,6 +56,10 @@ class Controlador {
         notifyAll(); // Asegura que el otro hilo no se quede esperando
     }
 
+    public synchronized boolean isProcessingComplete() {
+        return index >= numeros.size();
+    }
+
     public void imprimirSumaTotal() {
         System.out.println("Suma de numeros positivos: " + sumaPositivos);
         System.out.println("Suma de numeros negativos: " + sumaNegativos);
@@ -97,6 +101,17 @@ public class PosNegRunnable {
             hiloNegativos.join();
         } catch (InterruptedException e) {
             System.out.println("Error en la sincronizacion de los hilos.");
+        }
+
+        // Asegurarse de que ambos hilos hayan terminado
+        synchronized (controlador) {
+            while (!controlador.isProcessingComplete()) {
+                try {
+                    controlador.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
         }
 
         // Imprimir la suma total
